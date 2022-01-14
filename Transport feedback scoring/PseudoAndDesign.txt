@@ -1,0 +1,15 @@
+﻿We have 
+	- Route
+		- Id
+		- Name
+	- TransportAgency
+		- Name
+	- SentimentScore
+		- Date
+		- RouteId
+		- Score
+
+-----------------
+
+A route has many sentiment scores
+A route has an agency
