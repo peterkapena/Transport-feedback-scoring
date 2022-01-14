@@ -12,7 +12,6 @@ namespace Transport_feedback_scoring.Data
         public static IEnumerable<Route> GetRoutes()
         {
             List<Route> routes = new();
-            List<TransportAgency> transportAgencies = new();
 
             for (int i = 0; i < 2; i++)
                 foreach (string score in scores)
@@ -31,8 +30,9 @@ namespace Transport_feedback_scoring.Data
                 foreach (Route r in routes)
                 {
                     var id = refData.Split(";")[0].Split(" ")[0];
+                    r.Name = "METRO";
                     if (r.Id == id)
-                        r.Name = refData.Split(";")[0].Split(" ")[1];
+                        r.TransportAgency = refData.Split(";")[1];
                 }
 
             return routes;
@@ -64,12 +64,5 @@ namespace Transport_feedback_scoring.Data
                     });
             }
         }
-        //public static IEnumerable<TransportAgency> GetTransportAgencies()
-        //{
-        //    string[] lines = File.ReadAllLines(@"Data\scores.txt");
-
-        //    foreach (string line in lines)
-        //        yield return new TransportAgency { Id = line.Split(" ")[0], Name = line.Split(" ")[1].Split(";")[0] };
-        //}
     }
 }
