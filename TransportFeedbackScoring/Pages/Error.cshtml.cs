@@ -13,7 +13,7 @@ namespace TransportFeedbackScoring.Pages
         {
             _logger = logger;
         }
-
+#nullable enable
         public string? RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);

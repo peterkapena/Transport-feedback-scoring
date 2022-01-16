@@ -1,8 +1,6 @@
-﻿using System.Globalization;
-
-namespace Transport_feedback_scoring.Models
+﻿namespace TransportFeedbackScoring.Models
 {
-    public class Route
+    public class TransportRoute
     {
         public string Id { get; set; }
         public string Name { get; set; }

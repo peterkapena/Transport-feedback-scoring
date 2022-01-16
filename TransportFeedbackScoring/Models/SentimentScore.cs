@@ -1,4 +1,4 @@
-﻿namespace Transport_feedback_scoring.Models
+﻿namespace TransportFeedbackScoring.Models
 {
     public class SentimentScore
     {
