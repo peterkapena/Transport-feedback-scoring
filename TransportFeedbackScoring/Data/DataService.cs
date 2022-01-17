@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 using TransportFeedbackScoring.Models;
 
 namespace TransportFeedbackScoring.Data
@@ -10,20 +11,21 @@ namespace TransportFeedbackScoring.Data
 
         readonly string[] scores = File.ReadAllLines(@"Data\scores.txt");
         readonly string[] referenceData = File.ReadAllLines(@"Data\reference-data.txt");
+        readonly string resultFilePath = @"Data\result.txt";
 
         private IEnumerable<TransportRoute> GetTransportRoutes()
         {
             var routes = new List<TransportRoute>();
 
+            //For recurring purposes
             for (int i = 0; i < 2; i++)
                 foreach (string score in scores)
                 {
                     string id = score.Split(" ")[0].Split(";")[1];
 
+                    //If the route has been added already, add this sentiment score
                     if (routes.Any((r) => r.Id == id))
-                    {
                         AddSentiments(routes, score, id);
-                    }
                     else
                         routes.Add(new TransportRoute { Id = id });
                 }
@@ -53,7 +55,7 @@ namespace TransportFeedbackScoring.Data
                     Score = score
                 };
 
-                //  To satisfy the hypothesis 
+                //  To satisfy the obscuring hypothesis 
                 if (score > 0 && score < 10)
                     if (r.SentimentScores == null)
                         r.SentimentScores = new List<SentimentScore> { sentimentScore };
@@ -83,6 +85,9 @@ namespace TransportFeedbackScoring.Data
                     dailySentiments.AddRange(dailySentimentsCollection);
                 }
 
+            // Create the result file and add content to it
+            File.WriteAllLines(resultFilePath, dailySentiments.ConvertAll(d => d.ToString()));
+ 
             return dailySentiments;
         }
     }
