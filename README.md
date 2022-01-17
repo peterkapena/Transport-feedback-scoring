@@ -8,3 +8,5 @@
 
 ## [Running](#running)
 Open Visual Studio 2022, clone the this repository, then build and run the project in Visual Studio 2022.
+> Once run, the result output is written into the Data\result.txt file.
+> As a bonus, the result can also be viewed using the react js front end page.
