@@ -68,7 +68,7 @@ namespace TransportFeedbackScoring.Data
             var dailySentiments = new List<AverageScore>();
 
             foreach (var route in routes)
-                if (route.SentimentScores.Count > 0)
+                if (route.SentimentScores?.Count > 0)
                 {
                     var dailySentimentsCollection = from s in route.SentimentScores
                                                     group s by s.Date into g
